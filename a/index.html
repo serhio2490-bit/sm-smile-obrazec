@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>СМ-Смайл — вариант А «Ресепшен»</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@500;600&family=Onest:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f4f7fa;
+        --surface: #ffffff;
+        --text: #0f1c2b;
+        --text-2: #475669;
+        --line: #d6dfe8;
+        --accent: #0a5fa8; /* только то, что нажимается, и имя клиники */
+        --accent-press: #084c87;
+        --accent-soft: #e3eef8;
+        --font-head: "Geologica", system-ui, sans-serif;
+        --font-body: "Onest", system-ui, sans-serif;
+        --t-xs: 0.8125rem;
+        --t-sm: 0.875rem;
+        --t-base: 1rem;
+        --t-md: 1.0625rem;
+        --t-h2: 1.5rem;
+        --t-h1: clamp(1.75rem, 6.2vw + 0.35rem, 2.25rem);
+        --s1: 4px;
+        --s2: 8px;
+        --s3: 12px;
+        --s4: 16px;
+        --s5: 24px;
+        --s6: 32px;
+        --s7: 48px;
+        --r1: 10px;
+        --r2: 18px;
+        --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        overflow-x: clip;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font: 400 var(--t-base)/1.55 var(--font-body);
+        -webkit-font-smoothing: antialiased;
+      }
+      ::selection {
+        background: #cfe3f5;
+      }
+      a {
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      /* Шапка: логотип, телефон, меню */
+      .top {
+        display: flex;
+        align-items: center;
+        gap: var(--s3);
+        padding: var(--s3) var(--s4);
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: var(--s2);
+        text-decoration: none;
+        margin-right: auto;
+      }
+      .logo img {
+        width: 54px;
+        height: 40px;
+        display: block;
+      }
+      .logo span {
+        font: 600 var(--t-xs)/1.2 var(--font-head);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text-2);
+      }
+      .icon-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        padding: 0;
+        cursor: pointer;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        color: var(--text);
+        text-decoration: none;
+        transition: transform 140ms var(--ease-out);
+      }
+      .icon-btn:active {
+        transform: scale(0.95);
+      }
+      .icon-btn svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* Фото стойки: рейки и логотип клиники */
+      .photo {
+        position: relative;
+        margin: 0 var(--s4);
+        border-radius: var(--r2);
+        overflow: hidden;
+        aspect-ratio: 780 / 662;
+        max-height: 40dvh;
+        background: #e9e2d8;
+      }
+      .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 30%;
+        display: block;
+      }
+      .rating {
+        position: absolute;
+        left: var(--s3);
+        bottom: var(--s3);
+        display: inline-flex;
+        align-items: center;
+        gap: var(--s2);
+        min-height: 36px;
+        padding: 0 var(--s3) 0 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--text);
+        font-size: var(--t-sm);
+        line-height: 1.2;
+        text-decoration: none;
+        box-shadow: 0 4px 14px -6px rgba(15, 28, 43, 0.35);
+      }
+      .rating b {
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+      }
+      .rating .star {
+        color: #e3a008;
+        width: 16px;
+        height: 16px;
+      }
+      .rating small {
+        color: var(--text-2);
+        font-size: var(--t-sm);
+      }
+
+      /* Текст первого экрана */
+      .copy {
+        padding: var(--s5) var(--s4) var(--s4);
+      }
+      h1 {
+        margin: 0;
+        font: 600 var(--t-h1)/1.12 var(--font-head);
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+      }
+      h1 .brand {
+        color: var(--accent);
+      }
+      .lead {
+        margin: var(--s3) 0 0;
+        color: var(--text-2);
+        font-size: var(--t-md);
+        max-width: 36ch;
+      }
+
+      .actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--s3);
+        margin-top: var(--s5);
+      }
+      /* Узкий телефон: три лица вместо четырёх и без стрелки, чтобы надпись влезла в строку */
+      @media (max-width: 380px) {
+        .faces img:nth-child(4),
+        .team .arrow {
+          display: none;
+        }
+      }
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 54px;
+        padding: 0 var(--s5);
+        border-radius: var(--r1);
+        font: 600 var(--t-md)/1 var(--font-body);
+        text-decoration: none;
+        white-space: nowrap;
+        transition:
+          transform 140ms var(--ease-out),
+          background-color 160ms var(--ease-out);
+      }
+      .btn:active {
+        transform: scale(0.97);
+      }
+      .btn-main {
+        background: var(--accent);
+        color: #fff;
+      }
+      .btn-main:hover {
+        background: var(--accent-press);
+      }
+      .team {
+        display: flex;
+        align-items: center;
+        gap: var(--s3);
+        min-height: 54px;
+        padding: 0 var(--s4) 0 var(--s3);
+        border: 1px solid var(--line);
+        border-radius: var(--r1);
+        background: var(--surface);
+        text-decoration: none;
+        font-weight: 500;
+        white-space: nowrap;
+        transition: transform 140ms var(--ease-out);
+      }
+      .team:active {
+        transform: scale(0.98);
+      }
+      .faces {
+        display: flex;
+        flex: none;
+      }
+      .faces img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 2px solid var(--surface);
+        display: block;
+        object-fit: cover;
+      }
+      .faces img + img {
+        margin-left: -10px;
+      }
+      .team .arrow {
+        margin-left: auto;
+        flex: none;
+        width: 18px;
+        height: 18px;
+        color: var(--accent);
+      }
+      .addr {
+        margin: var(--s3) 0 0;
+        font-size: var(--t-sm);
+        color: var(--text-2);
+        text-align: center;
+      }
+
+      /* Следующий блок: с чем можем помочь */
+      .help {
+        padding: var(--s6) var(--s4) var(--s7);
+        background: var(--surface);
+        border-radius: var(--r2) var(--r2) 0 0;
+      }
+      h2 {
+        margin: 0 0 var(--s4);
+        font: 600 var(--t-h2)/1.15 var(--font-head);
+        letter-spacing: -0.015em;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--s2);
+      }
+      .need {
+        display: flex;
+        flex-direction: column;
+        gap: var(--s1);
+        min-height: 104px;
+        padding: var(--s3) var(--s3) var(--s3);
+        border-radius: var(--r1);
+        background: var(--bg);
+        text-decoration: none;
+        transition:
+          transform 140ms var(--ease-out),
+          background-color 160ms var(--ease-out);
+      }
+      .need:active {
+        transform: scale(0.98);
+      }
+      .need:hover {
+        background: var(--accent-soft);
+      }
+      .need b {
+        font: 600 var(--t-base)/1.25 var(--font-head);
+      }
+      .need span {
+        font-size: var(--t-xs);
+        line-height: 1.35;
+        color: var(--text-2);
+      }
+      .need i {
+        margin-top: auto;
+        font-style: normal;
+        font-size: var(--t-xs);
+        font-weight: 600;
+        color: var(--accent);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="top">
+        <a class="logo" href="#" aria-label="СМ-Смайл, на главную">
+          <img src="logo-dark.svg" width="54" height="40" alt="" />
+          <span>Стоматология<br />в Серпухове</span>
+        </a>
+        <a
+          class="icon-btn"
+          href="tel:+79863317034"
+          aria-label="Позвонить: +7 986 331-70-34"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"
+            />
+          </svg>
+        </a>
+        <button
+          class="icon-btn"
+          type="button"
+          aria-label="Открыть меню"
+          aria-expanded="false"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          >
+            <path d="M4 7h16M4 12h16M4 17h10" />
+          </svg>
+        </button>
+      </header>
+
+      <figure class="photo" style="margin-block: 0">
+        <img
+          src="reception.webp"
+          width="780"
+          height="662"
+          alt="Стойка администратора клиники СМ-Смайл: деревянные рейки и логотип клиники, на стойке белые розы"
+        />
+        <a
+          class="rating"
+          href="https://yandex.ru/maps/org/sm_smayl/108088748759/reviews/"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg
+            class="star"
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="m12 2.8 2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"
+            />
+          </svg>
+          <b>5,0</b> <small>333 оценки на Яндекс Картах</small>
+        </a>
+      </figure>
+
+      <section class="copy">
+        <h1>
+          <span class="brand">СМ-Смайл</span> — стоматология для&nbsp;всей семьи
+          в&nbsp;Серпухове
+        </h1>
+        <p class="lead">
+          От лечения зубов и детского приёма до имплантации и восстановления
+          улыбки&nbsp;— в&nbsp;одной клинике.
+        </p>
+        <div class="actions">
+          <a class="btn btn-main" href="#zapis">Записаться на приём</a>
+          <a class="team" href="#komanda">
+            <span class="faces" aria-hidden="true">
+              <img src="face1.webp" width="30" height="30" alt="" />
+              <img src="face2.webp" width="30" height="30" alt="" />
+              <img src="face3.webp" width="30" height="30" alt="" />
+              <img src="face4.webp" width="30" height="30" alt="" />
+            </span>
+            Познакомиться с командой
+            <svg
+              class="arrow"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+        <p class="addr">бульвар 65 лет Победы, 19</p>
+      </section>
+
+      <section class="help" aria-labelledby="help-h">
+        <h2 id="help-h">С чем можем помочь</h2>
+        <div class="grid">
+          <a class="need" href="https://smsmile.ru/uslugi/terapiya/"
+            ><b>Болит зуб, выпала пломба</b
+            ><span>Лечение кариеса, лечение под микроскопом</span
+            ><i>Лечение зубов</i></a
+          >
+          <a class="need" href="https://smsmile.ru/uslugi/gigiena/"
+            ><b>Пора на чистку</b><span>Профессиональная чистка зубов</span
+            ><i>Гигиена</i></a
+          >
+          <a class="need" href="https://smsmile.ru/uslugi/kids/"
+            ><b>Ребёнку к стоматологу</b
+            ><span>Лечение и профилактика для детей</span
+            ><i>Детская стоматология</i></a
+          >
+          <a class="need" href="https://smsmile.ru/uslugi/ortodontiya/"
+            ><b>Неровные зубы, прикус</b><span>Брекеты</span
+            ><i>Ортодонтия</i></a
+          >
+          <a
+            class="need"
+            href="https://smsmile.ru/uslugi/hirurgiya/udalenie-zubov/"
+            ><b>Нужно удалить зуб</b><span>Хирургия</span
+            ><i>Удаление зубов</i></a
+          >
+          <a class="need" href="https://smsmile.ru/uslugi/implantaciya/"
+            ><b>Нет одного или всех зубов</b
+            ><span>Импланты, All-on-4 и All-on-6</span><i>Имплантация</i></a
+          >
+          <a class="need" href="https://smsmile.ru/uslugi/protezirovanie/"
+            ><b>Вернуть зуб протезом</b><span>Коронки и протезы</span
+            ><i>Протезирование</i></a
+          >
+          <a class="need" href="https://smsmile.ru/uslugi/estetika/"
+            ><b>Хочу улыбку белее</b><span>Отбеливание, дизайн улыбки</span
+            ><i>Эстетика</i></a
+          >
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

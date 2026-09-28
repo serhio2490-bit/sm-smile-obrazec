@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>СМ-Смайл — вариант Б «Визитка»</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prata&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0f2b25; /* изумруд, как бархатный диван в холле */
+        --bg-2: #143830;
+        --text: #f3efe6;
+        --text-2: #b9c7c0;
+        --line: rgba(214, 186, 128, 0.35);
+        --gold: #d6ba80; /* золото логотипа на форме и визитках */
+        --gold-press: #c4a468;
+        --ink: #10231e;
+        --paper: #f5f1e8; /* светлый блок ниже — как лицевая сторона визитки */
+        --paper-2: #ebe4d6;
+        --ink-2: #4a5a54;
+        --green: #1d5c4d;
+        --font-head: "Prata", Georgia, serif;
+        --font-body: "Manrope", system-ui, sans-serif;
+        --t-xs: 0.8125rem;
+        --t-sm: 0.875rem;
+        --t-base: 1rem;
+        --t-md: 1.0625rem;
+        --t-h2: 1.5rem;
+        --t-h1: clamp(1.75rem, 6.4vw + 0.3rem, 2.3rem);
+        --s1: 4px;
+        --s2: 8px;
+        --s3: 12px;
+        --s4: 16px;
+        --s5: 24px;
+        --s6: 32px;
+        --s7: 48px;
+        --r1: 10px;
+        --r2: 16px;
+        --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        overflow-x: clip;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font: 400 var(--t-base)/1.55 var(--font-body);
+        -webkit-font-smoothing: antialiased;
+      }
+      ::selection {
+        background: var(--gold);
+        color: var(--ink);
+      }
+      a {
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      /* Фото команды во всю ширину, шапка поверх */
+      .photo {
+        position: relative;
+        aspect-ratio: 780 / 538;
+        max-height: 40dvh;
+        width: 100%;
+        background: var(--bg-2);
+      }
+      .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 35%;
+        display: block;
+      }
+      .photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(
+            to bottom,
+            rgba(15, 43, 37, 0.75) 0,
+            rgba(15, 43, 37, 0) 28%
+          ),
+          linear-gradient(to top, var(--bg) 0, rgba(15, 43, 37, 0) 34%);
+      }
+      .top {
+        position: absolute;
+        inset: 0 0 auto;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: var(--s3);
+        padding: var(--s3) var(--s4);
+      }
+      .logo {
+        display: block;
+        width: 64px;
+        height: 47px;
+        margin-right: auto;
+        background: var(--gold);
+        -webkit-mask: url(logo-white.svg) center / contain no-repeat;
+        mask: url(logo-white.svg) center / contain no-repeat;
+      }
+      .icon-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        padding: 0;
+        cursor: pointer;
+        border: 1px solid rgba(243, 239, 230, 0.35);
+        background: rgba(15, 43, 37, 0.5);
+        color: var(--text);
+        text-decoration: none;
+        transition: transform 140ms var(--ease-out);
+      }
+      .icon-btn:active {
+        transform: scale(0.95);
+      }
+      .icon-btn svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* Текст — как визитка: тонкая золотая рамка, надпись антиквой, как в логотипе */
+      .card {
+        position: relative;
+        z-index: 1;
+        margin: calc(-1 * var(--s5)) var(--s4) 0;
+        padding: var(--s5);
+        border: 1px solid var(--line);
+        border-radius: var(--r2);
+        background: linear-gradient(180deg, var(--bg-2), var(--bg));
+      }
+      .kicker {
+        display: flex;
+        align-items: center;
+        gap: var(--s3);
+        margin: 0 0 var(--s3);
+        color: var(--gold);
+        font: 600 0.75rem/1 var(--font-body);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .kicker::after {
+        content: "";
+        height: 1px;
+        flex: 1;
+        background: var(--line);
+      }
+      h1 {
+        margin: 0;
+        font: 400 var(--t-h1)/1.14 var(--font-head);
+        letter-spacing: -0.01em;
+        text-wrap: balance;
+      }
+      .lead {
+        margin: var(--s3) 0 0;
+        color: var(--text-2);
+        font-size: var(--t-md);
+        max-width: 36ch;
+      }
+      .proof {
+        display: flex;
+        align-items: center;
+        gap: var(--s2);
+        margin: var(--s2) 0 0;
+        min-height: 44px;
+        font-size: var(--t-sm);
+        color: var(--text-2);
+        text-decoration: none;
+      }
+      .proof b {
+        color: var(--text);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+      .proof .stars {
+        color: var(--gold);
+        font-size: var(--t-base);
+        line-height: 1;
+      }
+      .proof > span:last-child {
+        white-space: nowrap;
+      }
+      .proof u {
+        text-decoration-color: var(--line);
+        text-underline-offset: 3px;
+      }
+
+      .actions {
+        display: grid;
+        gap: var(--s3);
+        margin-top: var(--s3);
+      }
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 54px;
+        padding: 0 var(--s5);
+        border-radius: var(--r1);
+        font: 700 var(--t-md)/1 var(--font-body);
+        text-decoration: none;
+        white-space: nowrap;
+        transition:
+          transform 140ms var(--ease-out),
+          background-color 160ms var(--ease-out);
+      }
+      .btn:active {
+        transform: scale(0.97);
+      }
+      .btn-main {
+        background: var(--gold);
+        color: var(--ink);
+      }
+      .btn-main:hover {
+        background: var(--gold-press);
+      }
+      .btn-ghost {
+        border: 1px solid rgba(243, 239, 230, 0.4);
+        color: var(--text);
+        font-weight: 600;
+      }
+      .btn-ghost:hover {
+        background: rgba(243, 239, 230, 0.06);
+      }
+
+      /* Следующий блок: светлый, как лицевая сторона визитки */
+      .help {
+        margin-top: var(--s6);
+        padding: var(--s6) var(--s4) var(--s7);
+        background: var(--paper);
+        color: var(--ink);
+        border-radius: var(--r2) var(--r2) 0 0;
+      }
+      h2 {
+        margin: 0 0 var(--s4);
+        font: 400 var(--t-h2)/1.2 var(--font-head);
+      }
+      .list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid var(--paper-2);
+      }
+      .need {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: var(--s1) var(--s3);
+        min-height: 64px;
+        padding: var(--s3) 0;
+        border-bottom: 1px solid var(--paper-2);
+        text-decoration: none;
+      }
+      .need b {
+        font-weight: 700;
+        font-size: var(--t-base);
+        line-height: 1.3;
+      }
+      .need span {
+        grid-column: 1;
+        font-size: var(--t-xs);
+        color: var(--ink-2);
+      }
+      .need i {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        font-style: normal;
+        font-size: var(--t-xs);
+        font-weight: 700;
+        color: var(--green);
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #e3ece6;
+        white-space: nowrap;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="photo">
+        <header class="top">
+          <a class="logo" href="#" aria-label="СМ-Смайл, на главную"></a>
+          <a
+            class="icon-btn"
+            href="tel:+79863317034"
+            aria-label="Позвонить: +7 986 331-70-34"
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"
+              />
+            </svg>
+          </a>
+          <button
+            class="icon-btn"
+            type="button"
+            aria-label="Открыть меню"
+            aria-expanded="false"
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            >
+              <path d="M4 7h16M4 12h16M4 17h10" />
+            </svg>
+          </button>
+        </header>
+        <img
+          src="team.webp"
+          width="780"
+          height="538"
+          alt="Команда клиники СМ-Смайл: главный врач Александр Овсяников и три сотрудницы у стойки с логотипом клиники"
+        />
+      </div>
+
+      <section class="card">
+        <p class="kicker">СМ-Смайл · Серпухов</p>
+        <h1>Стоматология для&nbsp;всей семьи в&nbsp;Серпухове</h1>
+        <p class="lead">
+          От лечения зубов и детского приёма до имплантации и восстановления
+          улыбки&nbsp;— в&nbsp;одной клинике.
+        </p>
+        <a
+          class="proof"
+          href="https://yandex.ru/maps/org/sm_smayl/108088748759/reviews/"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="stars" aria-hidden="true">★</span>
+          <span><b>5,0</b> · <u>333 оценки на Яндекс Картах</u></span>
+        </a>
+        <div class="actions">
+          <a class="btn btn-main" href="#zapis">Записаться на приём</a>
+          <a class="btn btn-ghost" href="#komanda">Познакомиться с командой</a>
+        </div>
+      </section>
+
+      <section class="help" aria-labelledby="help-h">
+        <h2 id="help-h">С чем можем помочь</h2>
+        <ul class="list">
+          <li>
+            <a class="need" href="https://smsmile.ru/uslugi/terapiya/"
+              ><b>Болит зуб, выпала пломба</b
+              ><span>Лечение кариеса, лечение под микроскопом</span
+              ><i>Лечение зубов</i></a
+            >
+          </li>
+          <li>
+            <a class="need" href="https://smsmile.ru/uslugi/gigiena/"
+              ><b>Пора на чистку</b><span>Профессиональная чистка зубов</span
+              ><i>Гигиена</i></a
+            >
+          </li>
+          <li>
+            <a class="need" href="https://smsmile.ru/uslugi/kids/"
+              ><b>Ребёнку к стоматологу</b
+              ><span>Лечение и профилактика для детей</span><i>Детям</i></a
+            >
+          </li>
+          <li>
+            <a class="need" href="https://smsmile.ru/uslugi/ortodontiya/"
+              ><b>Неровные зубы, прикус</b><span>Брекеты</span
+              ><i>Ортодонтия</i></a
+            >
+          </li>
+          <li>
+            <a
+              class="need"
+              href="https://smsmile.ru/uslugi/hirurgiya/udalenie-zubov/"
+              ><b>Нужно удалить зуб</b><span>Хирургия</span><i>Удаление</i></a
+            >
+          </li>
+          <li>
+            <a class="need" href="https://smsmile.ru/uslugi/implantaciya/"
+              ><b>Нет одного или всех зубов</b
+              ><span>Импланты, All-on-4 и All-on-6</span><i>Имплантация</i></a
+            >
+          </li>
+          <li>
+            <a class="need" href="https://smsmile.ru/uslugi/protezirovanie/"
+              ><b>Вернуть зуб протезом</b><span>Коронки и протезы</span
+              ><i>Протезирование</i></a
+            >
+          </li>
+          <li>
+            <a class="need" href="https://smsmile.ru/uslugi/estetika/"
+              ><b>Хочу улыбку белее</b><span>Отбеливание, дизайн улыбки</span
+              ><i>Эстетика</i></a
+            >
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
